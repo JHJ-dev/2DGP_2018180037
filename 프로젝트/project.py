@@ -1,13 +1,19 @@
 from pico2d import *
+import random
 
 width, height = 1280, 720
 
-open_canvas(width, height)
-map = load_image('map.png')
-character = load_image('peashooter.png')
-
-running = True
-frame = 0
+class Sunlight:
+    def __init__(self):
+        self.x, self.y = random.randint (315, 1230), 720
+        self.frame = random.randint (0, 7)
+        self.image = load_image ('resource.png')
+        
+    def update(self):
+        self.y -= 5
+        
+    def draw(self):
+        self.image.draw(self.x , self.y)
 
 def handle_events():
     global running
@@ -18,13 +24,22 @@ def handle_events():
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             running = False
     pass
+    
+open_canvas(width, height)
+map = load_image('map.png')
+resource = [Sunlight() for i in range(10)]
+
+running = True
 
 while running:
+    handle_events()
+    for sunlight in resource:
+        sunlight.update()
     clear_canvas()
     map.draw(width//2, height//2)
-    character.draw(300, 100)
+    for sunlight in resource:
+        sunlight.draw()
     update_canvas()
-    frame = (frame + 1) % 8
-    handle_events()
+    delay(0.05)
     
 close_canvas()
