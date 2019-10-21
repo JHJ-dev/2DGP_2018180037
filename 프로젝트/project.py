@@ -5,7 +5,7 @@ width, height = 1280, 720
 
 class Sunlight:
     def __init__(self):
-        self.x, self.y = random.randint (315, 1230), 720
+        self.x, self.y = random.randint (365, 1180), 720
         self.frame = random.randint (0, 7)
         self.image = load_image ('resource.png')
         
