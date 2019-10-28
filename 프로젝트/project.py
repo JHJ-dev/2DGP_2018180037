@@ -2,8 +2,6 @@ from pico2d import *
 import random
 from sun import Sun
 
-global random_Y
-
 width, height = 1280, 720
 
 open_canvas(width, height)
