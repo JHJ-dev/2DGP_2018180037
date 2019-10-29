@@ -1,11 +1,11 @@
 from pico2d import *
-import random
 from sun import Sun
 
-width, height = 1280, 720
+width, height = 1152, 672
 
 open_canvas(width, height)
 map = load_image('map.png')
+
 Resource = [Sun() for i in range(10)]
 
 running = True
@@ -16,9 +16,8 @@ while running:
         
     clear_canvas()
     map.draw(width//2, height//2)
-    while(random_Y <= self.y):
-        for sun in Resource:
-            sun.draw()
+    for sun in Resource:
+        sun.draw()
     update_canvas()
     delay(0.05)
     
