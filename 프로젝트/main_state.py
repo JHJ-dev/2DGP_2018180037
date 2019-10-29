@@ -16,8 +16,8 @@ map = None
 def enter():
     global map, Resource, Monster
     map = Map()
-    Resource = [Sun() for i in range(1)]
-    Monster = [Zombie() for i in range(1)]
+    Resource = [Sun() for i in range(3)]
+    Monster = [Zombie() for i in range(5)]
     pass
 
 def exit():
