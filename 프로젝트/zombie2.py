@@ -17,6 +17,6 @@ class Zombie:
 
     def draw(self):
         if (self.x > 336):
-            self.walk2.draw(self.x, self.y)
+            self.walk2.clip_draw(self.frame * 100, 0, 120, 133, self.x, self.y)
         else:
             self.walk2.draw(336, self.y)

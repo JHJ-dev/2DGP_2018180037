@@ -1,25 +1,32 @@
 from pico2d import *
 import game_framework
 import title_state
-import map
-import sun
-import zombie
+
+from map import Map
+from slot import Slot
+from sun import Sun
+from zombie1 import Zombie1
 
 name = "MainState"
 
-Map = []
-Resource =[]
+map = None
+slot = None
+sun = None
+zombie1 = None
 
 def enter():
-    global map
-    pass
+    global map, slot, Resource, Monster1
+    Resource = [Sun() for i in range(3)]
+    Monster1 = [Zombie1() for i in range(3)]
+    map = Map()
+    slot = Slot()
 
 def exit():
-    global map, sun, zombie
-    del (map)
-    del (sun)
-    del (zombie)
-    pass
+    global map, slot, sun, zombie1
+    del map
+    del slot
+    del sun
+    del zombie1
 
 def pause():
     pass
@@ -34,20 +41,20 @@ def handle_events():
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             game_framework.change_state(title_state)
-    pass
 
 def update():
     for sun in Resource:
         sun.update()
-    for zombie in Monster:
-        zombie.update()
+    for zombie1 in Monster1:
+        zombie1.update()
 
 def draw():
     clear_canvas()
     map.draw()
+    slot.draw()
     for sun in Resource:
         sun.draw()
-    for zombie in Monster:
-        zombie.draw()
+    for zombie1 in Monster1:
+        zombie1.draw()
     update_canvas()
-    delay(0.01)
+    delay(0.05)
