@@ -2,31 +2,50 @@ from pico2d import *
 import game_framework
 import title_state
 
-from map import Map
-from slot import Slot
-from sun import Sun
-from zombie1 import Zombie1
+import map
+import slot
+import sun
+import zombie1
 
 name = "MainState"
 
-map = None
-slot = None
-sun = None
-zombie1 = None
+Resource = []
+Mob1 = []
+
+sun_maker = 0
+sun_remover = 0
 
 def enter():
-    global map, slot, Resource, Monster1
-    Resource = [Sun() for i in range(3)]
-    Monster1 = [Zombie1() for i in range(3)]
-    map = Map()
-    slot = Slot()
+    global map, slot, sun, zombie1
+    map = map.Map()
+    slot = slot.Slot()
+    sun = sun.Sun()
+    zombie1 = zombie1.Zombie1
 
 def exit():
     global map, slot, sun, zombie1
-    del map
-    del slot
-    del sun
-    del zombie1
+    del (map)
+    del (slot)
+    del (sun)
+    del (zombie1)
+
+def update():
+    global Resource, sun_maker, sun_remover
+    if(sun_maker > 3):
+        Resource.append(sun)
+        sun_maker = 0
+    delay(0.01)
+    sun_maker += 1
+    pass
+
+def draw():
+    clear_canvas()
+    map.draw()
+    slot.draw()
+    for i in Resource:
+        i.draw()
+    update_canvas()
+    delay(0.05)
 
 def pause():
     pass
@@ -41,20 +60,3 @@ def handle_events():
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             game_framework.change_state(title_state)
-
-def update():
-    for sun in Resource:
-        sun.update()
-    for zombie1 in Monster1:
-        zombie1.update()
-
-def draw():
-    clear_canvas()
-    map.draw()
-    slot.draw()
-    for sun in Resource:
-        sun.draw()
-    for zombie1 in Monster1:
-        zombie1.draw()
-    update_canvas()
-    delay(0.05)
