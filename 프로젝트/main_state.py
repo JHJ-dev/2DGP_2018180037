@@ -1,23 +1,17 @@
-import random
-
 from pico2d import *
-
 import game_framework
 import title_state
-
-from map import Map
-from sun import Sun
-from zombie import Zombie
+import map
+import sun
+import zombie
 
 name = "MainState"
 
-map = None
+Map = []
+Resource =[]
 
 def enter():
-    global map, Resource, Monster
-    map = Map()
-    Resource = [Sun() for i in range(3)]
-    Monster = [Zombie() for i in range(5)]
+    global map
     pass
 
 def exit():

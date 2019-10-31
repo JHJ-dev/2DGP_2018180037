@@ -6,7 +6,7 @@ class Zombie:
     z = random.randint(0, 10)
 
     def __init__(self):
-        self.walk1 = load_image('walk1.png')
+        self.walk2 = load_image('walk2.png')
         self.x = random.randint (1152, 2000)
         self.y = -25 + (random.randint(1, 5) * 96)
         self.frame = random.randint(0, 7)
@@ -17,6 +17,6 @@ class Zombie:
 
     def draw(self):
         if (self.x > 336):
-            self.walk1.draw(self.x, self.y)
+            self.walk2.draw(self.x, self.y)
         else:
-            self.walk1.draw(336, self.y)
+            self.walk2.draw(336, self.y)
