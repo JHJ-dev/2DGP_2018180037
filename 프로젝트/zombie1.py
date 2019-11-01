@@ -2,9 +2,6 @@ from pico2d import *
 import random
 
 class Zombie1:
-    global z
-    z = random.randint(0, 10)
-
     def __init__(self):
         self.walk1 = load_image('walk1.png')
         self.x = 1200
@@ -14,6 +11,7 @@ class Zombie1:
     def update(self):
         self.frame = (self.frame + 1) % 10
         self.x -= 1
+        delay(0.05)
 
     def draw(self):
         if (self.x > 336):

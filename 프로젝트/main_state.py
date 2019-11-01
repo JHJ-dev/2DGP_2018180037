@@ -1,6 +1,8 @@
 from pico2d import *
 import game_framework
+#import game_world
 import title_state
+import random
 
 import map
 import slot
@@ -12,40 +14,38 @@ name = "MainState"
 Resource = []
 Mob1 = []
 
-sun_maker = 0
-sun_remover = 0
+sun_timer = 0
+mob_timer = 0
 
 def enter():
-    global map, slot, sun, zombie1
-    map = map.Map()
-    slot = slot.Slot()
-    sun = sun.Sun()
-    zombie1 = zombie1.Zombie1
+    Resource.append(sun.Sun())
+    Mob1.append(zombie1.Zombie1())
+    pass
 
 def exit():
-    global map, slot, sun, zombie1
-    del (map)
-    del (slot)
-    del (sun)
-    del (zombie1)
+    pass
 
 def update():
-    global Resource, sun_maker, sun_remover
-    if(sun_maker > 3):
-        Resource.append(sun)
+    global Resource, sun_maker
+    for i in Resource:
+        i.update()
+    for i in Mob1:
+        i.update()
+    if(sun_maker > 1):
+        Resource.append(sun.Sun())
         sun_maker = 0
-    delay(0.01)
-    sun_maker += 1
+    sun_maker += 0.01
     pass
 
 def draw():
     clear_canvas()
-    map.draw()
-    slot.draw()
+    map.Map().draw()
+    slot.Slot().draw()
     for i in Resource:
         i.draw()
+    for i in Mob1:
+        i.draw()
     update_canvas()
-    delay(0.05)
 
 def pause():
     pass

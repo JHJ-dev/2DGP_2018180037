@@ -2,9 +2,6 @@ from pico2d import *
 import random
 
 class Zombie:
-    global z
-    z = random.randint(0, 10)
-
     def __init__(self):
         self.walk2 = load_image('walk2.png')
         self.x = random.randint (1152, 2000)
