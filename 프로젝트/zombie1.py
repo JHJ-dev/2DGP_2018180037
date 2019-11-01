@@ -10,8 +10,8 @@ class Zombie1:
 
     def update(self):
         self.frame = (self.frame + 1) % 10
-        self.x -= 1
-        delay(0.05)
+        self.x -= 3
+        delay(0.06)
 
     def draw(self):
         if (self.x > 336):

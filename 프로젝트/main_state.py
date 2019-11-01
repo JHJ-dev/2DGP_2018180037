@@ -14,28 +14,30 @@ name = "MainState"
 Resource = []
 Mob1 = []
 
-sun_timer = 0
-mob_timer = 0
+sun_timer = 0.0
+mob_timer = 0.0
 
 def enter():
     Resource.append(sun.Sun())
     Mob1.append(zombie1.Zombie1())
-    pass
 
 def exit():
     pass
 
 def update():
-    global Resource, sun_maker
+    global Resource, sun_timer, mob_timer
     for i in Resource:
         i.update()
     for i in Mob1:
         i.update()
-    if(sun_maker > 1):
+    if(sun_timer > 1):
         Resource.append(sun.Sun())
-        sun_maker = 0
-    sun_maker += 0.01
-    pass
+        sun_timer = 0
+    sun_timer += 0.01
+    if(mob_timer > (random.randint(5, 10)) / 10):
+        Mob1.append(zombie1.Zombie1())
+        mob_timer = 0
+    mob_timer += 0.01
 
 def draw():
     clear_canvas()

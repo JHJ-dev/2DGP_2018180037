@@ -10,7 +10,7 @@ class Sun():
         self.stop_y = -48 + (random.randint(1, 5) * 96)
 
     def update(self):
-        self.y -= 5
+        self.y -= 10
 
     def draw(self):
         if(self.y < self.stop_y):
