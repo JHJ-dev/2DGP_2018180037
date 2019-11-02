@@ -6,6 +6,7 @@ import random
 
 import map
 import slot
+import peashooter_ui
 import sun
 import zombie1
 
@@ -18,8 +19,10 @@ sun_timer = 0.0
 mob_timer = 0.0
 
 def enter():
+    global peashooter_ui
     Resource.append(sun.Sun())
     Mob1.append(zombie1.Zombie1())
+    peashooter_ui = peashooter_ui.pea_ui()
 
 def exit():
     pass
@@ -30,6 +33,7 @@ def update():
         i.update()
     for i in Mob1:
         i.update()
+    peashooter_ui.update()
     if(sun_timer > 1):
         Resource.append(sun.Sun())
         sun_timer = 0
@@ -43,6 +47,7 @@ def draw():
     clear_canvas()
     map.Map().draw()
     slot.Slot().draw()
+    peashooter_ui().draw()
     for i in Resource:
         i.draw()
     for i in Mob1:
