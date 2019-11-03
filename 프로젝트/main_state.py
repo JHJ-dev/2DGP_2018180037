@@ -4,6 +4,8 @@ import game_framework
 import title_state
 import random
 
+os.chdir('C:\\2DGP_2018180037\\프로젝트\\resource')
+
 import map
 import slot
 import peashooter_ui
