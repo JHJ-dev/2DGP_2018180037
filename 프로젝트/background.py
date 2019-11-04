@@ -1,8 +1,8 @@
 from pico2d import *
 
-class Map:
+class Background:
     def __init__(self):
-        self.image = load_image('map.png')
+        self.image = load_image('image/background.png')
 
     def update(self):
         pass

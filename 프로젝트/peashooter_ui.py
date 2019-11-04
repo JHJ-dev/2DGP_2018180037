@@ -1,8 +1,8 @@
 from pico2d import *
 
-class pea_ui:
+class Peashooter_ui:
     def __init__(self):
-        self.image = load_image('peashooter_ui.png')
+        self.image = load_image('image/peashooter_ui.png')
         self.frame = 0
 
     def update(self):

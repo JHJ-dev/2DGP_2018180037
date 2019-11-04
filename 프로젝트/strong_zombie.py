@@ -1,9 +1,9 @@
 from pico2d import *
 import random
 
-class Zombie:
+class Strong_zombie:
     def __init__(self):
-        self.walk2 = load_image('walk2.png')
+        self.image = load_image('image/strong_zombie.png')
         self.x = random.randint (1152, 2000)
         self.y = -25 + (random.randint(1, 5) * 96)
         self.frame = random.randint(0, 7)
@@ -14,6 +14,6 @@ class Zombie:
 
     def draw(self):
         if (self.x > 336):
-            self.walk2.clip_draw(self.frame * 100, 0, 120, 133, self.x, self.y)
+            self.image.clip_draw(self.frame * 100, 0, 120, 133, self.x, self.y)
         else:
-            self.walk2.draw(336, self.y)
+            self.image.draw(336, self.y)
