@@ -15,9 +15,10 @@ def remove_object(o):
 
 
 def clear():
-    for o in all_objects():
-        del o
-    objects.clear()
+    for i in range(len(objects)):
+        for o in all_objects():
+             remove_object(o)
+             del o
 
 
 def all_objects():

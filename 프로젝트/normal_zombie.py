@@ -1,29 +1,22 @@
 from pico2d import *
 from bullet import Bullet
+import random
 
 import game_world
 
-class WalkState:
-    def enter(Normal_zombie):
-        Normal_zombie.image = load_image('')
-
-
-class AtttackState:
-
-class DeadState:
-
 class Normal_zombie:
     def __init__(self):
-        self.walk1 = load_image('image/normal_zombie.png')
+        self.image = load_image('image/walk_normal_zombie.png')
         self.x = 1200
         self.y = -25 + (random.randint(1, 5) * 96)
-        self.frame = random.randint(0, 7)
+        self.velocity = 0
+        self.frame = 0
 
     def get_bb(self):
         return self.x - 50, self.y - 50, self.x + 50, self.y + 50
 
     def update(self):
-        self.frame = (self.frame + 1) % 10
+        self.frame = (self.frame + 1) % 8
         self.x -= 3
         delay(0.06)
 
