@@ -2,6 +2,8 @@ from pico2d import *
 from bullet import Bullet
 import random
 
+#
+
 import game_world
 
 class Normal_zombie:
