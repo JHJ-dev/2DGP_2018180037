@@ -8,4 +8,4 @@ class Background:
         pass
 
     def draw(self):
-        self.image.draw(576, 336)
+        self.image.draw(1152//2, 672//2)

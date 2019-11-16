@@ -1,7 +1,7 @@
 from pico2d import *
 import game_framework
-import start_state
+import title_state
 
 open_canvas(1152, 672)
-game_framework.run(start_state)
+game_framework.run(title_state)
 pico2d.close_canvas()

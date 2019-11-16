@@ -27,13 +27,12 @@ def handle_events():
                 game_framework.quit()
             elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE):
                 game_framework.change_state(main_state)
-
     pass
 
 
 def draw():
     clear_canvas()
-    image.draw(576, 336)
+    image.draw(1152//2, 672//2)
     update_canvas()
     pass
 
