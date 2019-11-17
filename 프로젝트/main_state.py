@@ -1,25 +1,23 @@
-from typing import Any, Union
-
 from pico2d import *
 import game_framework
 import game_world
 import title_state
-import random
 
-from background import *
-from ui_slot import *
-from peashooter_ui import *
-from sun import *
-from peashooter import *
-from bullet import *
-from normal_zombie import *
+from background import Background
+from ui_slot import Ui_slot
+from peashooter_ui import Peashooter_ui
+from sun import Sun
+from peashooter import Peashooter
+from bullet import Bullet
+from normal_zombie import Normal_zombie
 
 name = "MainState"
 
-Ui = []
+UI = []
 Resource = []
-Shoot = []
-Monster = []
+Plant = []
+Mob1 = []
+Mob2 = []
 
 def collide(a, b):
     left_a, bottom_a, right_a, top_a = a.get_bb()
@@ -32,36 +30,30 @@ def collide(a, b):
 
 
 def enter():
-    global sun, normal_zombie
     background = Background()
-    ui_slot = Ui_slot()
-    peashooter_ui = Peashooter_ui()
-    sun = Sun()
-    peashooter = Peashooter()
-    bullet = Bullet()
-    normal_zombie = Normal_zombie()
-
     game_world.add_object(background, 0)
+
+    ui_slot = Ui_slot()
     game_world.add_object(ui_slot, 0)
+
+    peashooter_ui = Peashooter_ui()
     game_world.add_object(peashooter_ui, 0)
+
+    peashooter = Peashooter()
     game_world.add_object(peashooter, 1)
 
-
-def exit():
-    game_world.clear()
-
+    global sun
+    sun = Sun()
+    normal_zombie = Normal_zombie()
 
 def update():
-    global sun, normal_zombie
+    global Time
     Time = int(get_time())
     if (Time % 5 == 0):
         game_world.add_object(sun, 1)
-    if (Time % 2 == 0):
-        game_world.add_object(normal_zombie, 1)
+    print(Time)
     for game_object in game_world.all_objects():
         game_object.update()
-
-    print("Time : %d" % Time)
 
 
 def draw():
@@ -70,6 +62,14 @@ def draw():
         game_object.draw()
     update_canvas()
 
+def exit():
+    game_world.clear()
+
+def pause():
+    pass
+
+def resume():
+    pass
 
 def handle_events():
     events = get_events()
@@ -78,9 +78,3 @@ def handle_events():
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             game_framework.change_state(title_state)
-
-def pause():
-    pass
-
-def resume():
-    pass
